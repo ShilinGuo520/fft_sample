@@ -2,8 +2,10 @@
 #include "math.h"
 
 #define PI 3.141592653589
+#define N 256
+#define M 8
+
 typedef double ElemType;
-//typedef int ElemType;
 
 typedef struct {
     ElemType real;
@@ -20,8 +22,6 @@ complex_a complex_xx(complex_a a, complex_a b)
 }
 
 
-#define N 256
-#define M 8
 void rader_changer(complex_a buff[])
 {
     int i,j,k;
@@ -92,7 +92,6 @@ int main(int argc ,char * argv[])
 
     printf("sin:");
     for (i = 0 ;i < N ;i++) {
-//        buff[i].real = sin(4*PI*i/N);
         buff[i].real = sin(2*PI*(i+25)/N) + 2 * sin(4*PI*i/N) + 3 * sin(6*PI*i/N);
         buff[i].imag = 0;
         printf("%08lf ",buff[i].real);
