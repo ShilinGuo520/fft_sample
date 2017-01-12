@@ -2,8 +2,8 @@
 #include "math.h"
 
 #define PI 3.141592653589
-#define N 256
-#define M 8
+#define N 128
+#define M 7
 
 typedef double ElemType;
 
@@ -88,19 +88,24 @@ int main(int argc ,char * argv[])
     complex_a buff[N];
     ElemType out[N];
     int i;
+    ElemType temp;
     printf("start\n");
 
     printf("sin:");
     for (i = 0 ;i < N ;i++) {
-        buff[i].real = sin(2*PI*(i+25)/N) + 2 * sin(4*PI*i/N) + 3 * sin(6*PI*i/N);
+	temp = sin(16*PI*i/N);
+	if (temp > 0)
+            buff[i].real = temp;
+	else
+	    buff[i].real = 0;
         buff[i].imag = 0;
-        printf("%08lf ",buff[i].real);
+        printf("%04lf ",buff[i].real);
     }
     printf("\nFFT:");
     FFT(buff);
     complex_modulo(buff, out);
     for (i = 0 ;i < N ;i++) {
-        printf("%08lf ",out[i]);
+        printf("%04lf ",out[i]);
     }
     printf("\n");
 
